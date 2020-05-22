@@ -2,36 +2,57 @@ import * as React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import  stackNavigator from "./stackNavigator";
-import {Ionicons} from '@expo/vector-icons';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import {Ionicons,MaterialCommunityIcons} from '@expo/vector-icons';
+import bottomNavigator from './materialBottomNavigator';
 
-const Tab = createMaterialBottomTabNavigator();
+// const Tab = createMaterialBottomTabNavigator();
 
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="List" component={List} />
-      <Tab.Screen name="Names" component={Names} />
-    </Tab.Navigator>
-  );
-}
+// function MyTabs() {
+//   return (
+//     <Tab.Navigator
+//       initialRouteName="Home"
+//       activeColor="#f0edf6"
+//       inactiveColor="#3e2465"
+//       barStyle={{ backgroundColor: '#694fad' }}
+//   >
+//       <Tab.Screen 
+//       name="List" 
+//       component={List} 
+//       options={{
+//         tabBarIcon: ({ color }) => (
+//           <Ionicons name="md-list" color={color} size={26} />
+//         ),
+//       }}
+//       />
+//       <Tab.Screen 
+//       name="Names" 
+//       component={Names}
+//       options={{
+//         tabBarIcon: ({ color }) => (
+//           <Ionicons name="md-contacts" color={color} size={26} />
+//         ),
+//       }}
+//        />
+//     </Tab.Navigator>
+//   );
+// }
 
 const Drawer = createDrawerNavigator();
 
-const List = () =>{   
-    return (
-      <View style={styles.container}>
-        <Text>BT1</Text>
-      </View>
-    );
- }
- const Names = () =>{   
-  return (
-    <View style={styles.container}>
-      <Text>BT2</Text>
-    </View>
-  );
-}
+// const List = () =>{   
+//     return (
+//       <View style={styles.container}>
+//         <Text>BT1</Text>
+//       </View>
+//     );
+//  }
+//  const Names = () =>{   
+//   return (
+//     <View style={styles.container}>
+//       <Text>BT2</Text>
+//     </View>
+//   );
+// }
 
 const MyDrawer=()=>{
   return(
@@ -41,13 +62,17 @@ const MyDrawer=()=>{
           component={stackNavigator}
           options={{
             drawerLabel:"Home",
-            // drawerStyle:{
-            //   fontSize=
-            // },
             drawerIcon:()=> <Ionicons name="md-home" size={32} color="crimson" />
           }}
           />
-          <Drawer.Screen name = "Drawer2" component={MyTabs}/>
+          <Drawer.Screen
+           name = "Function" 
+           component={bottomNavigator}
+           options={{
+            drawerLabel:"Account",
+            drawerIcon:()=> <MaterialCommunityIcons name="account" size={32} color="crimson" />
+          }}
+           />
     </Drawer.Navigator>
   );
 }
