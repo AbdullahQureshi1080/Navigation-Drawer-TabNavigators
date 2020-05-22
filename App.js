@@ -1,61 +1,45 @@
 import * as React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { color } from "react-native-reanimated";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
+// import { createStackNavigator } from "@react-navigation/stack";
+// import  HomeScreen  from "./screens/HomeScreen";
+// import  StartScreen from "./screens/StartScreen";
+// import  stackNavigator from "./components/stackNavigator";
+import  MyDrawer from "./components/drawerNavigator";
+// import {Ionicons} from '@expo/vector-icons';
 
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
+
+
+// const drawer1 = () =>{   
+//   return (
+//     <View style={styles.container}>
+//       <Text>Drawer 1</Text>
+//     </View>
+//   );
+// }
+
+// const drawer2 = () =>{   
+// return (
+//   <View style={styles.container}>
+//     <Text>Drawer 2</Text>
+//   </View>
+// );
+// }
+ 
 
 class App extends React.Component {
   
   state = {};
-  HomeScreen = ({navigation}) => {
-    return (
-      <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <Button title="Next Screen" onPress={()=>{navigation.navigate("Start",{name:"Messi",id:"barca"})}}></Button>
-      </View>
-    );
-  };
-
-  StartScreen = ({navigation, route}) => {
-    const routeAccess = route.params;
-    const id = routeAccess.id;
-
-    return (
-      <View style={styles.container}>
-        <Text>Start Screen</Text>
-        <Text>{id}</Text>
-        <Button title="New ID" onPress={()=>{navigation.setParams({id:"Real"})}}></Button>
-        <Button title="Prev Screen" onPress={()=>{navigation.goBack()}}></Button>
-      </View>
-    );
-  };
 
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator 
-        initialRouteName={"Home"}
-        screenOptions={{
-          headerTitleAlign:"center",
-        }}>
-          <Stack.Screen 
-          name="Home"
-          component={this.HomeScreen}
-          options={{
-            headerTitleAlign:"left",
-            headerTintColor:"white",
-            headerStyle:{
-              backgroundColor:"crimson",
-            },
-            headerRight:()=> <Button title = "Edit"/>
-          }} 
-          />
-          <Stack.Screen name="Start" component={this.StartScreen} />
-        </Stack.Navigator>
+        <MyDrawer/>
       </NavigationContainer>
+      
     );
   }
 }
